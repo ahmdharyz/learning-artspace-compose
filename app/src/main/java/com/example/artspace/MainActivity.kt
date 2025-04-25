@@ -4,10 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.ListItemDefaults.contentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -15,9 +19,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.artspace.ui.theme.ArtSpaceTheme
@@ -28,6 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ArtSpaceTheme {
+                ArtSpaceApp()
             }
         }
     }
@@ -38,6 +45,7 @@ fun ArtSpaceApp() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
             .background(MaterialTheme.colorScheme.background)
     ) {
         ArtworkWall()
@@ -48,14 +56,16 @@ fun ArtSpaceApp() {
 fun ArtworkWall(modifier: Modifier = Modifier) {
     Surface(
         shape = RectangleShape,
-        color = MaterialTheme.colorScheme. surface,
+        color = MaterialTheme.colorScheme.surface,
         contentColor = contentColorFor(MaterialTheme.colorScheme.surface),
         tonalElevation = 0.dp,
         shadowElevation = 0.dp,
         border = null,
         modifier = modifier,
     ) {
-
+        Image(
+            painter = painterResource(id = R.drawable.girl_with_a_pearl_earring_from_johannes_vermeer), contentDescription = null,
+        )
     }
 }
 
