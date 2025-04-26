@@ -62,7 +62,7 @@ fun ArtSpaceApp() {
 fun ArtworkWall(modifier: Modifier = Modifier) {
     Surface(
         shape = RectangleShape,
-        shadowElevation = 4.dp,
+        shadowElevation = 8.dp,
         modifier = modifier
             .fillMaxWidth()
     ) {
