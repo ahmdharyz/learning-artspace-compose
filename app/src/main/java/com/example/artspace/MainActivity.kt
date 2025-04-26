@@ -8,14 +8,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.artspace.ui.theme.ArtSpaceTheme
 
 class MainActivity : ComponentActivity() {
@@ -44,10 +48,13 @@ fun ArtSpaceApp() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
-            .background(MaterialTheme.colorScheme.background)
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         ArtworkWall()
+        Spacer(modifier = Modifier.height(24.dp))
+        ArtworkDescriptor("Girl with a pearl earring", "Johannes Vermeer", "1994")
     }
 }
 
@@ -67,6 +74,20 @@ fun ArtworkWall(modifier: Modifier = Modifier) {
         )
     }
 }
+
+@Composable
+fun ArtworkDescriptor(artworkTitle: String, artworkArtist: String, artWorkYear: String, modifier: Modifier = Modifier) {
+    Text(
+        artworkTitle,
+        style = MaterialTheme.typography.titleLarge
+    )
+    Spacer(modifier = Modifier.height(8.dp))
+    Text(
+        artworkArtist + " (" + artWorkYear + ")",
+        style = MaterialTheme.typography.titleMedium
+    )
+}
+
 
 @Preview(showBackground = true)
 @Composable
