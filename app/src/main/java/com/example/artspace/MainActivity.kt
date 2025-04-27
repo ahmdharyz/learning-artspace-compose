@@ -111,7 +111,6 @@ fun ArtworkDescriptor(artworkTitle: String, artworkArtist: String, artWorkYear: 
 fun DisplayController(modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier.padding(16.dp)
     ) {
         val clickedPreviousButton = { /*TODO*/ }
         val clickedNextButton = { /*TODO*/ }
