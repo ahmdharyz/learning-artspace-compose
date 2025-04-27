@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -49,18 +50,24 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ArtSpaceApp() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        ArtworkWall()
-        Spacer(modifier = Modifier.height(24.dp))
-        ArtworkDescriptor("Girl with a pearl earring", "Johannes Vermeer", "1994")
-        Spacer(modifier = Modifier.height(36.dp))
-        displayController()
+    Box {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            ArtworkWall()
+            Spacer(modifier = Modifier.height(24.dp))
+            ArtworkDescriptor("Girl with a pearl earring", "Johannes Vermeer", "1994")
+            Spacer(modifier = Modifier.height(36.dp))
+        }
+        displayController(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(16.dp)
+        )
     }
 }
 
