@@ -26,6 +26,7 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -70,6 +71,7 @@ fun ArtworkWall(modifier: Modifier = Modifier) {
         shadowElevation = 8.dp,
         modifier = modifier
             .fillMaxWidth()
+            .background(color = Color.White)
     ) {
         Image(
             painter = painterResource(id = R.drawable.girl_with_a_pearl_earring_from_johannes_vermeer), contentDescription = null,
