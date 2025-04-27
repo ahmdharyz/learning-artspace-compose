@@ -89,19 +89,22 @@ fun ArtworkWall(modifier: Modifier = Modifier) {
 
 @Composable
 fun ArtworkDescriptor(artworkTitle: String, artworkArtist: String, artWorkYear: String, modifier: Modifier = Modifier) {
-    Text(
-        artworkTitle,
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.titleLarge,
-        modifier = modifier
-    )
-    Spacer(modifier = Modifier.height(8.dp))
-    Text(
-        artworkArtist + " (" + artWorkYear + ")",
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.titleMedium,
-        modifier = modifier
-    )
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            artworkTitle,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.titleLarge,
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            artworkArtist + " (" + artWorkYear + ")",
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.titleMedium,
+        )
+    }
 }
 
 @Composable
