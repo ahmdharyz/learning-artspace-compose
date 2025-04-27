@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -45,19 +46,23 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ArtSpaceApp() {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        ArtworkWall(modifier = Modifier.align(Alignment.Center))
-        Column(
+        Box (
             modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
+                .weight(1F),
+            contentAlignment = Alignment.Center
+        ) {
+            ArtworkWall()
+        }
+        Column(
+            modifier = Modifier,
         ) {
             Spacer(modifier = Modifier.height(24.dp))
-            ArtworkDescriptor("Girl with a pearl earring", "Johannes Vermeer", "1994")
+            ArtworkDescriptor("Girl with a pearl earring", "Johannes Vermeer", "1994", modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(36.dp))
             DisplayController()
         }
@@ -89,7 +94,6 @@ fun ArtworkDescriptor(artworkTitle: String, artworkArtist: String, artWorkYear: 
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.titleLarge,
         modifier = modifier
-            .fillMaxWidth()
     )
     Spacer(modifier = Modifier.height(8.dp))
     Text(
@@ -97,7 +101,6 @@ fun ArtworkDescriptor(artworkTitle: String, artworkArtist: String, artWorkYear: 
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.titleMedium,
         modifier = modifier
-            .fillMaxWidth()
     )
 }
 
