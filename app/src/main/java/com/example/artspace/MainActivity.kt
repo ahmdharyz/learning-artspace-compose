@@ -73,10 +73,10 @@ fun ArtSpaceApp() {
 fun ArtworkWall(modifier: Modifier = Modifier) {
     Surface(
         shape = RectangleShape,
+        color = Color.White,
         shadowElevation = 8.dp,
         modifier = modifier
             .fillMaxWidth()
-            .background(color = Color.White)
     ) {
         Image(
             painter = painterResource(id = R.drawable.girl_with_a_pearl_earring_from_johannes_vermeer), contentDescription = null,
