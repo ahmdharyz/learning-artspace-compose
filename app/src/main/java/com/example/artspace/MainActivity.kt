@@ -15,15 +15,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,9 +26,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.artspace.ui.theme.ArtSpaceTheme
 
 class MainActivity : ComponentActivity() {
@@ -50,24 +45,22 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ArtSpaceApp() {
-    Box {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        ArtworkWall(modifier = Modifier.align(Alignment.Center))
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
         ) {
-            ArtworkWall()
             Spacer(modifier = Modifier.height(24.dp))
             ArtworkDescriptor("Girl with a pearl earring", "Johannes Vermeer", "1994")
             Spacer(modifier = Modifier.height(36.dp))
+            DisplayController()
         }
-        displayController(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(16.dp)
-        )
     }
 }
 
@@ -93,20 +86,26 @@ fun ArtworkWall(modifier: Modifier = Modifier) {
 fun ArtworkDescriptor(artworkTitle: String, artworkArtist: String, artWorkYear: String, modifier: Modifier = Modifier) {
     Text(
         artworkTitle,
-        style = MaterialTheme.typography.titleLarge
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.titleLarge,
+        modifier = modifier
+            .fillMaxWidth()
     )
     Spacer(modifier = Modifier.height(8.dp))
     Text(
         artworkArtist + " (" + artWorkYear + ")",
-        style = MaterialTheme.typography.titleMedium
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.titleMedium,
+        modifier = modifier
+            .fillMaxWidth()
     )
 }
 
 @Composable
-fun displayController(modifier: Modifier = Modifier) {
+fun DisplayController(modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier
+        modifier = modifier.padding(16.dp)
     ) {
         val clickedPreviousButton = { /*TODO*/ }
         val clickedNextButton = { /*TODO*/ }
