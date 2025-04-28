@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -155,7 +156,7 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
             modifier = Modifier,
         ) {
             Spacer(modifier = Modifier.height(24.dp))
-            ArtworkDescriptor("Girl with a pearl earring", "Johannes Vermeer", "1994", modifier = Modifier.fillMaxWidth())
+            ArtworkDescriptor(title, artist, year, modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(36.dp))
             DisplayController()
         }
@@ -182,19 +183,19 @@ fun ArtworkWall(
 }
 
 @Composable
-fun ArtworkDescriptor(artworkTitle: String, artworkArtist: String, artWorkYear: String, modifier: Modifier = Modifier) {
+fun ArtworkDescriptor(artworkTitle: Int, artworkArtist: Int, artWorkYear: Int, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            artworkTitle,
+            text = stringResource(id = artworkTitle),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleLarge,
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            artworkArtist + " (" + artWorkYear + ")",
+            text = "${stringResource(id = artworkArtist)} (${stringResource(id = artWorkYear)})",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleMedium,
         )
