@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -195,7 +196,12 @@ fun ArtworkWall(
 }
 
 @Composable
-fun ArtworkDescriptor(artworkTitle: Int, artworkArtist: Int, artWorkYear: Int, modifier: Modifier = Modifier) {
+fun ArtworkDescriptor(
+    @StringRes artworkTitle: Int,
+    @StringRes artworkArtist: Int,
+    @StringRes artWorkYear: Int,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
