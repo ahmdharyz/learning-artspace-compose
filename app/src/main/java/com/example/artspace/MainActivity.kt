@@ -45,15 +45,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ArtSpaceApp() {
+fun ArtSpaceApp(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
         Box (
-            modifier = Modifier
-                .weight(1F),
+            modifier = Modifier.weight(1F),
             contentAlignment = Alignment.Center
         ) {
             ArtworkWall()
@@ -75,14 +74,12 @@ fun ArtworkWall(modifier: Modifier = Modifier) {
         shape = RectangleShape,
         color = Color.White,
         shadowElevation = 8.dp,
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         Image(
             painter = painterResource(id = R.drawable.girl_with_a_pearl_earring_from_johannes_vermeer), contentDescription = null,
             contentScale = ContentScale.FillWidth,
-            modifier = Modifier
-                .padding(16.dp)
+            modifier = Modifier.padding(16.dp)
         )
     }
 }
@@ -111,6 +108,7 @@ fun ArtworkDescriptor(artworkTitle: String, artworkArtist: String, artWorkYear: 
 fun DisplayController(modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier
     ) {
         val clickedPreviousButton = { /*TODO*/ }
         val clickedNextButton = { /*TODO*/ }
