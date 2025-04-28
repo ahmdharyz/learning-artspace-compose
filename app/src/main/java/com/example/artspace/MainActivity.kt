@@ -53,10 +53,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ArtSpaceApp(modifier: Modifier = Modifier) {
     var index by remember { mutableStateOf(0) }
-    var image: Int
-    var title: Int
-    var artist: Int
-    var year: Int
+    var image by remember { mutableStateOf(R.drawable._1_girl_with_a_pearl_earring__restored_version_1994____johannes_vermeer) }
+    val title: Int
+    val artist: Int
+    val year: Int
 
     when (index) {
         1 -> {
