@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -139,7 +137,7 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
         } // might need to change this
     }
 
-    val onClickPreviousButton: () -> Unit = {
+    val onPreviousClick: () -> Unit = {
         if (index == 1) {
             index = 12
         } else {
@@ -147,7 +145,7 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
         }
     }
 
-    val onClickNextButton: () -> Unit = {
+    val onNextClick: () -> Unit = {
         if (index == 12) {
             index = 1
         } else {
@@ -172,7 +170,7 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(24.dp))
             ArtworkDescriptor(title, artist, year, modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(36.dp))
-            DisplayController(onClickPreviousButton, onClickNextButton)
+            DisplayController(onPreviousClick, onNextClick)
         }
     }
 }
