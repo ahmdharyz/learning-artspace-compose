@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +22,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,6 +51,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ArtSpaceApp(modifier: Modifier = Modifier) {
+    var image = R.drawable.girl_with_a_pearl_earring_from_johannes_vermeer
+    var painterResource by remember { mutableStateOf(image) }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -55,7 +63,7 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
             modifier = Modifier.weight(1F),
             contentAlignment = Alignment.Center
         ) {
-            ArtworkWall()
+            ArtworkWall(painterResource)
         }
         Column(
             modifier = Modifier,
@@ -69,7 +77,10 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ArtworkWall(modifier: Modifier = Modifier) {
+fun ArtworkWall(
+    @DrawableRes image: Int,
+    modifier: Modifier = Modifier
+) {
     Surface(
         shape = RectangleShape,
         color = Color.White,
@@ -77,7 +88,7 @@ fun ArtworkWall(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth()
     ) {
         Image(
-            painter = painterResource(id = R.drawable.girl_with_a_pearl_earring_from_johannes_vermeer), contentDescription = null,
+            painter = painterResource(id = image), contentDescription = null,
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.padding(16.dp)
         )
