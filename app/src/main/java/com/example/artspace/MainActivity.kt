@@ -164,7 +164,7 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
             modifier = Modifier.weight(1F),
             contentAlignment = Alignment.Center
         ) {
-            ArtworkWall(painterResource)
+            ArtworkWall(image)
         }
         Column(
             modifier = Modifier,
