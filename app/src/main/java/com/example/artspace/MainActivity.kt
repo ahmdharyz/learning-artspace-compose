@@ -139,7 +139,21 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
         } // might need to change this
     }
 
-    var painterResource by remember { mutableStateOf(image) }
+    val onClickPreviousButton: () -> Unit = {
+        if (index == 1) {
+            index = 12
+        } else {
+            index -= 1
+        }
+    }
+
+    val onClickNextButton: () -> Unit = {
+        if (index == 12) {
+            index = 1
+        } else {
+            index += 1
+        }
+    }
 
     Column(
         modifier = modifier
@@ -158,7 +172,7 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(24.dp))
             ArtworkDescriptor(title, artist, year, modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(36.dp))
-            DisplayController()
+            DisplayController(onClickPreviousButton, onClickNextButton)
         }
     }
 }
@@ -203,14 +217,11 @@ fun ArtworkDescriptor(artworkTitle: Int, artworkArtist: Int, artWorkYear: Int, m
 }
 
 @Composable
-fun DisplayController(modifier: Modifier = Modifier) {
+fun DisplayController(clickedPreviousButton: () -> Unit, clickedNextButton: () -> Unit, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
     ) {
-        val clickedPreviousButton = { /*TODO*/ }
-        val clickedNextButton = { /*TODO*/ }
-
         FilledTonalButton(
             onClick = clickedPreviousButton,
             modifier = Modifier.weight(2f)
