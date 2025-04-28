@@ -220,7 +220,7 @@ fun ArtworkDescriptor(artworkTitle: Int, artworkArtist: Int, artWorkYear: Int, m
 fun DisplayController(clickedPreviousButton: () -> Unit, clickedNextButton: () -> Unit, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier
+        modifier = modifier.padding(bottom = 16.dp)
     ) {
         FilledTonalButton(
             onClick = clickedPreviousButton,
