@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -50,7 +52,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ArtSpaceApp(modifier: Modifier = Modifier) {
+fun ArtSpaceApp(
+    modifier: Modifier = Modifier
+) {
     var index by remember { mutableStateOf(1) }
     var image by remember { mutableStateOf(R.drawable._1_girl_with_a_pearl_earring__restored_version_1994____johannes_vermeer) }
     val title: Int
@@ -135,7 +139,7 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
             title = R.string.title_1
             artist = R.string.artist_1
             year = R.string.year_1
-        } // might need to change this
+        }
     }
 
     val onPreviousClick: () -> Unit = {
@@ -154,19 +158,31 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
         }
     }
 
+    val screenWidth = LocalConfiguration.current.screenWidthDp
+    val fillHeightOrWidth: Modifier
+    val contentScale: ContentScale
+
+    if (screenWidth < 600) {
+        contentScale = ContentScale.FillWidth
+        fillHeightOrWidth = modifier.fillMaxWidth()
+    } else {
+        contentScale = ContentScale.FillHeight
+        fillHeightOrWidth = modifier.fillMaxHeight()
+    }
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
         Box (
-            modifier = Modifier.weight(1F),
+            modifier = Modifier
+                .weight(1F)
+                .fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
-            ArtworkWall(image)
+            ArtworkWall(image, contentScale, modifier = fillHeightOrWidth)
         }
         Column(
-            modifier = Modifier,
         ) {
             Spacer(modifier = Modifier.height(24.dp))
             ArtworkDescriptor(title, artist, year, modifier = Modifier.fillMaxWidth())
@@ -179,17 +195,18 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
 @Composable
 fun ArtworkWall(
     @DrawableRes image: Int,
+    contentScale: ContentScale,
     modifier: Modifier = Modifier
 ) {
     Surface(
         shape = RectangleShape,
         color = Color.White,
         shadowElevation = 8.dp,
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
     ) {
         Image(
             painter = painterResource(id = image), contentDescription = null,
-            contentScale = ContentScale.FillWidth,
+            contentScale = contentScale,
             modifier = Modifier.padding(16.dp)
         )
     }
