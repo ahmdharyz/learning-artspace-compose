@@ -162,6 +162,7 @@ fun ArtSpaceApp(
     val fillHeightOrWidth: Modifier
     val contentScale: ContentScale
 
+    // Need to refactor
     if (screenWidth < 600) {
         contentScale = ContentScale.FillWidth
         fillHeightOrWidth = modifier.fillMaxWidth()
